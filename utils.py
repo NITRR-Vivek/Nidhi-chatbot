@@ -7,6 +7,9 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+env_path = '/etc/secrets/.env'
+load_dotenv(dotenv_path=env_path)
+
 GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
 PINE_API_KEY = os.getenv("PINE_API_KEY")
 PINECONE_API_ENV = os.getenv("PINE_API_ENV")
