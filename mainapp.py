@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_chat import message
 import google.generativeai as genai
 from utils import chat
+import os
 
 st.set_page_config(
     page_title="Nidhi: An AI chatbot NITRR Edition",
@@ -41,7 +42,17 @@ with st.expander("ℹ️ Disclaimer"):
     st.caption(
         "We appreciate your engagement! Please note, this chatbot can also produce wrong response and limited data is provided to the chatbot."
     )
-GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
+
+GOOGLE_API_KEY = os.environ.get("GEMINI_API_KEY")  
+if not all([GOOGLE_API_KEY ]):
+    try:
+        GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
+    except FileNotFoundError as e:
+        st.warning("Secrets file not found. Using environment variables.")
+    except Exception as e:
+        st.error("Error loading secrets. Please make sure secrets are properly configured.")
+        st.stop()
+        
 with st.sidebar:
         st.header("Enter your own Gemini API Key")
         input_api_key = st.text_input("(ignore if you haven't, it still works)", key="input",type='password')
