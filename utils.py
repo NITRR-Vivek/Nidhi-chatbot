@@ -3,11 +3,24 @@ from pinecone import  PodSpec
 import streamlit as st
 import google.generativeai as genai 
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
-GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
-PINE_API_KEY = st.secrets["PINE_API_KEY"]
-PINECONE_API_ENV = st.secrets["PINE_API_ENV"]
-INDEX_NAME=st.secrets["PINE_INDEX"]
+GOOGLE_API_KEY = os.getenv("GEMINI_API_KEY")
+PINE_API_KEY = os.getenv("PINE_API_KEY")
+PINECONE_API_ENV = os.getenv("PINE_API_ENV")
+INDEX_NAME = os.getenv("PINE_INDEX")
+
+if not all([GOOGLE_API_KEY, PINE_API_KEY, PINECONE_API_ENV, INDEX_NAME]):
+    try:
+        GOOGLE_API_KEY = st.secrets["GEMINI_API_KEY"]
+        PINE_API_KEY = st.secrets["PINE_API_KEY"]
+        PINECONE_API_ENV = st.secrets["PINE_API_ENV"]
+        INDEX_NAME = st.secrets["PINE_INDEX"]
+    except Exception as e:
+        st.error("Error loading secrets. Please make sure secrets are properly configured.")
+        st.stop()
 
 embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=GOOGLE_API_KEY)
 
