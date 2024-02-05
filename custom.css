@@ -1,9 +1,0 @@
-footer {
-    display: none; /* Hides the entire footer */
-}
-
-/* OR, if you want more specificity: */
-
-.viewerBadge_link__qRIco {
-    display: none; /* Targets the Streamlit-specific footer class */
-}
