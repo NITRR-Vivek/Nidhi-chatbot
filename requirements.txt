@@ -1,0 +1,5 @@
+streamlit
+streamlit_chat
+pinecone-client
+google-generativeai 
+langchain-google-genai 
