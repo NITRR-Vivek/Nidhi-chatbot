@@ -16,10 +16,11 @@ if not all([GOOGLE_API_KEY, PINE_API_KEY, PINECONE_API_ENV, INDEX_NAME]):
         PINE_API_KEY = st.secrets["PINE_API_KEY"]
         PINECONE_API_ENV = st.secrets["PINE_API_ENV"]
         INDEX_NAME = st.secrets["PINE_INDEX"]
+    except FileNotFoundError as e:
+        st.warning("Secrets file not found. Using environment variables.")
     except Exception as e:
         st.error("Error loading secrets. Please make sure secrets are properly configured.")
         st.stop()
-
 embeddings = GoogleGenerativeAIEmbeddings(model = "models/embedding-001",google_api_key=GOOGLE_API_KEY)
 
 spec = PodSpec(environment=PINECONE_API_ENV)
