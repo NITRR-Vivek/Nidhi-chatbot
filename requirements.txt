@@ -1,5 +1,5 @@
-streamlit
-streamlit_chat
-pinecone-client
-google-generativeai 
-langchain-google-genai 
+langchain_google_genai==0.0.6
+pinecone==0.1.0
+protobuf==4.25.2
+streamlit==1.30.0
+streamlit_chat==0.1.1
