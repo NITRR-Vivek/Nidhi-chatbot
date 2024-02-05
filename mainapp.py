@@ -93,3 +93,8 @@ for j, message_data in enumerate(st.session_state.chat_history):
             is_user=message_data["role"] == "user",
             key=f"message_{i}_{j}",  # Ensure unique keys for messages
         )  
+st.markdown(f"""
+<style>
+    @import url('custom.css');
+</style>
+""", unsafe_allow_html=True)
