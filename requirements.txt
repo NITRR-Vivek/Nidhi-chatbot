@@ -1,6 +1,5 @@
 langchain_google_genai
 pinecone-client
-os
 google-generativeai 
 python-dotenv
 streamlit
