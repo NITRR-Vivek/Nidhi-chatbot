@@ -35,7 +35,7 @@ def chat(input_query):
   index = pc.Index(INDEX_NAME)
   vectors = index.query(
     vector = query_vector,
-    top_k = 20,
+    top_k = 2,
     include_values = False,
     include_metadata = True
   )
